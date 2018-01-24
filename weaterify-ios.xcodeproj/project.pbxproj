@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0DB9CF2019110A00FBDCB7 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0DB9CE2019110A00FBDCB7 /* Forecast.swift */; };
+		7B0DB9D32019194800FBDCB7 /* TestForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0DB9D22019194800FBDCB7 /* TestForecast.swift */; };
 		7BA46D2E20188D020034E539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA46D2D20188D020034E539 /* AppDelegate.swift */; };
 		7BA46D3020188D020034E539 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA46D2F20188D020034E539 /* ViewController.swift */; };
 		7BA46D3320188D020034E539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BA46D3120188D020034E539 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B0DB9CE2019110A00FBDCB7 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		7B0DB9D22019194800FBDCB7 /* TestForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestForecast.swift; sourceTree = "<group>"; };
 		7BA46D2A20188D020034E539 /* weaterify-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "weaterify-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA46D2D20188D020034E539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BA46D2F20188D020034E539 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B0DB9CD201910FC00FBDCB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B0DB9CE2019110A00FBDCB7 /* Forecast.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7BA46D2120188D020034E539 = {
 			isa = PBXGroup;
 			children = (
@@ -125,9 +137,10 @@
 		7BA46D2C20188D020034E539 /* weaterify-ios */ = {
 			isa = PBXGroup;
 			children = (
-				7BEF268B2018B40100E4421D /* Resources */,
 				7BA46D2D20188D020034E539 /* AppDelegate.swift */,
 				7BA46D2F20188D020034E539 /* ViewController.swift */,
+				7B0DB9CD201910FC00FBDCB7 /* Models */,
+				7BEF268B2018B40100E4421D /* Resources */,
 				7BEF26692018A51F00E4421D /* frameworks */,
 			);
 			path = "weaterify-ios";
@@ -136,8 +149,9 @@
 		7BA46D4120188D030034E539 /* weaterify-iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				7BA46D4220188D030034E539 /* weaterify_iosTests.swift */,
 				7BA46D4420188D030034E539 /* Info.plist */,
+				7BA46D4220188D030034E539 /* weaterify_iosTests.swift */,
+				7B0DB9D22019194800FBDCB7 /* TestForecast.swift */,
 			);
 			path = "weaterify-iosTests";
 			sourceTree = "<group>";
@@ -293,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BA46D3020188D020034E539 /* ViewController.swift in Sources */,
+				7B0DB9CF2019110A00FBDCB7 /* Forecast.swift in Sources */,
 				7BA46D2E20188D020034E539 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B0DB9D32019194800FBDCB7 /* TestForecast.swift in Sources */,
 				7BA46D4320188D030034E539 /* weaterify_iosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
