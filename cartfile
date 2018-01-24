@@ -1,0 +1,4 @@
+github "ReactiveX/RxSwift"
+github "ReSwift/ReactiveReSwift"
+github "Raizlabs/BonMot"
+github "onevcat/Kingfisher"
