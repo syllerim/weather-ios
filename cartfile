@@ -2,3 +2,6 @@ github "ReactiveX/RxSwift"
 github "ReSwift/ReactiveReSwift"
 github "Raizlabs/BonMot"
 github "onevcat/Kingfisher"
+github "alickbass/sweetrouter"
+github "wearereasonablepeople/ApiConnector" "master"
+

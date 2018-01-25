@@ -1,4 +1,6 @@
 github "Raizlabs/BonMot" "5.0"
 github "ReSwift/ReactiveReSwift" "4.0.0"
 github "ReactiveX/RxSwift" "4.1.1"
+github "alickbass/sweetrouter" "1.0.0"
 github "onevcat/Kingfisher" "4.6.1"
+github "wearereasonablepeople/ApiConnector" "a979e89906946c6541117a920693970d6df5092b"
