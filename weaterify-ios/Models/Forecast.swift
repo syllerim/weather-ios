@@ -10,9 +10,22 @@ import Foundation
 
 // MARK:- Coordinate
 
-struct Coordinate: Decodable {
+struct Coordinate {
     let lat: Double
     let lon: Double
+}
+
+extension Coordinate: Decodable {
+    enum CoordinateKeys: String, CodingKey {
+        case lat
+        case lon
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CoordinateKeys.self)
+        lat = try values.decode(Double.self, forKey: .lat)
+        lon = try values.decode(Double.self, forKey: .lon)
+    }
 }
 
 extension Coordinate: Hashable {
@@ -33,12 +46,31 @@ extension Coordinate: Hashable {
 
 // MARK:- City
 
-struct City: Decodable {
+struct City {
     let id: Int
     let name: String
     let coord: Coordinate
     let country: String
     let population: Int64
+}
+
+extension City: Decodable {
+    enum CityKeys: String, CodingKey {
+        case id
+        case name
+        case coord
+        case country
+        case population
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CityKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        coord = try values.decode(Coordinate.self, forKey: .coord)
+        country = try values.decode(String.self, forKey: .country)
+        population = try values.decode(Int64.self, forKey: .population)
+    }
 }
 
 extension City: Hashable {
@@ -65,11 +97,28 @@ extension City: Hashable {
 
 // MARK:- Weather
 
-struct Weather: Decodable {
+struct Weather {
     let id: Int
     let main: String
     let description: String
     let icon: String
+}
+
+extension Weather: Decodable {
+    enum WeatherKeys: String, CodingKey {
+        case id
+        case main
+        case description
+        case icon
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: WeatherKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        main = try values.decode(String.self, forKey: .main)
+        description = try values.decode(String.self, forKey: .description)
+        icon = try values.decode(String.self, forKey: .icon)
+    }
 }
 
 extension Weather: Hashable {
@@ -94,13 +143,34 @@ extension Weather: Hashable {
 
 // MARK:- Temp
 
-struct Temp: Decodable {
+struct Temp {
     let day: Double
     let min: Double
     let max: Double
     let night: Double
     let eve: Double
-    let mor: Double
+    let morn: Double
+}
+
+extension Temp: Decodable {
+    enum TempKeys: String, CodingKey {
+        case day
+        case min
+        case max
+        case night
+        case eve
+        case morn
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: TempKeys.self)
+        day = try values.decode(Double.self, forKey: .day)
+        min = try values.decode(Double.self, forKey: .min)
+        max = try values.decode(Double.self, forKey: .max)
+        night = try values.decode(Double.self, forKey: .night)
+        eve = try values.decode(Double.self, forKey: .eve)
+        morn = try values.decode(Double.self, forKey: .morn)
+    }
 }
 
 extension Temp: Hashable {
@@ -112,7 +182,7 @@ extension Temp: Hashable {
         hash = ((hash << 5) &+ hash) &+ max.hashValue
         hash = ((hash << 5) &+ hash) &+ night.hashValue
         hash = ((hash << 5) &+ hash) &+ eve.hashValue
-        hash = ((hash << 5) &+ hash) &+ mor.hashValue
+        hash = ((hash << 5) &+ hash) &+ morn.hashValue
         
         return hash
     }
@@ -123,13 +193,13 @@ extension Temp: Hashable {
             && lhs.max == rhs.max
             && lhs.night == rhs.night
             && lhs.eve == rhs.eve
-            && lhs.mor == rhs.mor
+            && lhs.morn == rhs.morn
     }
 }
 
 // MARK:- DailyForecast
 
-struct DailyForecast: Decodable {
+struct DailyForecast {
     let dt: Date
     let temp: Temp
     let pressure: Double
@@ -139,6 +209,33 @@ struct DailyForecast: Decodable {
     let deg: Int
     let clouds: Int
     let rain: Double
+}
+
+extension DailyForecast: Decodable {
+    enum DailyForecastKeys: String, CodingKey {
+        case dt
+        case temp
+        case pressure
+        case humidity
+        case weather
+        case speed
+        case deg
+        case clouds
+        case rain
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: DailyForecastKeys.self)
+        dt = Date.init(timeIntervalSince1970: try values.decode(Double.self, forKey: .dt))
+        temp = try values.decode(Temp.self, forKey: .temp)
+        pressure = try values.decode(Double.self, forKey: .pressure)
+        humidity = try values.decode(Int.self, forKey: .humidity)
+        weather = try values.decode([Weather].self, forKey: .weather)
+        speed = try values.decode(Double.self, forKey: .speed)
+        deg = try values.decode(Int.self, forKey: .deg)
+        clouds = try values.decode(Int.self, forKey: .clouds)
+        rain = try values.decode(Double.self, forKey: .rain)
+    }
 }
 
 extension DailyForecast: Hashable {
@@ -173,12 +270,33 @@ extension DailyForecast: Hashable {
 
 // MARK:- Forecast
 
-struct Forecast: Decodable {
+struct Forecast {
     let cod: String
     let message: Double
     let cnt: Int
     let list: [DailyForecast]
     let city: City
+}
+
+extension Forecast: Decodable {
+    enum ForecastKeys: String, CodingKey {
+        case cod
+        case message
+        case cnt
+        case list
+        case city
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let values = try decoder.container(keyedBy: ForecastKeys.self)
+        city = try values.decode(City.self, forKey: .city)
+        cod = try values.decode(String.self, forKey: .cod)
+        message = try values.decode(Double.self, forKey: .message)
+        cnt = try values.decode(Int.self, forKey: .cnt)
+        list = try values.decode([DailyForecast].self, forKey: .list)
+        
+    }
 }
 
 extension Forecast: Hashable {
