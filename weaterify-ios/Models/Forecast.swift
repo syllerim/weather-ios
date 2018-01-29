@@ -208,7 +208,7 @@ struct DailyForecast {
     let speed: Double
     let deg: Int
     let clouds: Int
-    let rain: Double
+    let rain: Double?
 }
 
 extension DailyForecast: Decodable {
@@ -234,7 +234,7 @@ extension DailyForecast: Decodable {
         speed = try values.decode(Double.self, forKey: .speed)
         deg = try values.decode(Int.self, forKey: .deg)
         clouds = try values.decode(Int.self, forKey: .clouds)
-        rain = try values.decode(Double.self, forKey: .rain)
+        rain = try? values.decode(Double.self, forKey: .rain)
     }
 }
 
@@ -250,8 +250,10 @@ extension DailyForecast: Hashable {
         hash = ((hash << 5) &+ hash) &+ speed.hashValue
         hash = ((hash << 5) &+ hash) &+ deg.hashValue
         hash = ((hash << 5) &+ hash) &+ clouds.hashValue
-        hash = ((hash << 5) &+ hash) &+ rain.hashValue
         
+        if let rain = rain {
+            hash = ((hash << 5) &+ hash) &+ rain.hashValue
+        }
         return hash
     }
     
