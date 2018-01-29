@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import SwiftyStoryboard
+
+struct Main: StoryboardType {
+    enum ControllerId: String {
+        case dashboard
+    }
+}
