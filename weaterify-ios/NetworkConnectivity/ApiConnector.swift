@@ -19,9 +19,19 @@ final class ApiConnection<Provider: DataRequestType>: ApiConnectionType {
     
     init() {}
     
-    var token: String = "95d190a434083879a6398aafd54d9e73"
+    var token: String {
+        let defaults = UserDefaults.standard
+        guard let authorizationToken = defaults.string(forKey: App.keyToken) else {
+            return ""
+        }
+        return authorizationToken
+    }
     
     func getForecast(for city: String, cnt: String, units: String?) -> Observable<Forecast> {
-        return requestObservable(at: .forecast(for: city, cnt, units, token)).toModel().debug()
+        return requestObservable(at: .forecast(for: city, cnt, units, token)).toModel()
+    }
+    
+    func getForecastBasedOnCoordinates(for lat: String, lon: String, cnt: String, units: String?) -> Observable<Forecast> {
+        return requestObservable(at: .forecastBasedOnCoordinates(for: lat, lon, cnt, units, token)).toModel()
     }
 }
