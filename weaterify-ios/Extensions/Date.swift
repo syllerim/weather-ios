@@ -31,7 +31,16 @@ extension Date {
     
     var toDayString: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMM d"
+        dateFormatter.dateFormat = "EEE d MMM"
+        return dateFormatter.string(from: self)
+    }
+    
+    var toDayOfTheWeekString: String {
+        let calendar = Calendar.current
+        if calendar.isDateInToday(self) { return "Today" }
+        if calendar.isDateInTomorrow(self) { return "Tomorrow" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
         return dateFormatter.string(from: self)
     }
     

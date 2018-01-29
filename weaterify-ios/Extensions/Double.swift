@@ -9,18 +9,12 @@
 import Foundation
 
 extension Double {
-    
-    var toOneDecimal: String {
-        return Double.formatterOneDigit.string(from: self)
-    }
-    
-    static var formatterOneDigit: NumberFormatter {
+
+    func toString(with fractionDigits:Int) -> String {
         let formatter = NumberFormatter()
-        formatter.numberStyle = .DecimalStyle
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 1
-        return formatter
+        formatter.minimumFractionDigits = fractionDigits
+        formatter.maximumFractionDigits = fractionDigits
+        return formatter.string(from: NSNumber(value: self))  ?? "\(self)"
     }
-    
 }
 
