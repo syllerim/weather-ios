@@ -45,6 +45,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="E2h-UL-X0h" firstAttribute="leading" secondItem="4E9-1p-R3u" secondAttribute="leading" id="5hJ-Mo-9vB"/>
                             <constraint firstItem="UIt-kt-vo2" firstAttribute="top" secondItem="4E9-1p-R3u" secondAttribute="top" id="63b-eG-Rk6"/>
@@ -64,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2n-L7-Iv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="122"/>
+            <point key="canvasLocation" x="-279" y="122"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="crq-XM-BnY">
@@ -155,7 +156,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI1-oj-2Ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="525.60000000000002" y="121.88905547226388"/>
+            <point key="canvasLocation" x="468" y="122"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="FPZ-TJ-iZh">
+            <objects>
+                <viewController storyboardIdentifier="settings" id="Axt-uR-IXq" customClass="SettingsViewController" customModule="weaterify_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rd1-JT-StL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RVS-fs-vNT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A2B-Zc-iyL">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5N-CS-5rP">
+                                        <rect key="frame" x="166" y="14" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1268855035" green="0.58810228109999996" blue="0.95351511239999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="j5N-CS-5rP" firstAttribute="centerX" secondItem="A2B-Zc-iyL" secondAttribute="centerX" id="NgD-dZ-ZVo"/>
+                                    <constraint firstItem="j5N-CS-5rP" firstAttribute="centerY" secondItem="A2B-Zc-iyL" secondAttribute="centerY" id="RXd-gG-jKf"/>
+                                    <constraint firstAttribute="height" constant="50" id="rqw-gH-2IG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RVS-fs-vNT" firstAttribute="top" secondItem="Rd1-JT-StL" secondAttribute="top" id="NEb-wb-tVp"/>
+                            <constraint firstItem="A2B-Zc-iyL" firstAttribute="bottom" secondItem="a0w-4S-PvA" secondAttribute="bottom" id="Qaf-03-1TI"/>
+                            <constraint firstItem="RVS-fs-vNT" firstAttribute="trailing" secondItem="a0w-4S-PvA" secondAttribute="trailing" id="TmR-cy-oKd"/>
+                            <constraint firstItem="A2B-Zc-iyL" firstAttribute="leading" secondItem="a0w-4S-PvA" secondAttribute="leading" id="Uin-TD-JMv"/>
+                            <constraint firstItem="A2B-Zc-iyL" firstAttribute="trailing" secondItem="a0w-4S-PvA" secondAttribute="trailing" id="Xe1-Jj-KIA"/>
+                            <constraint firstItem="A2B-Zc-iyL" firstAttribute="top" secondItem="RVS-fs-vNT" secondAttribute="bottom" id="kjG-PP-70s"/>
+                            <constraint firstItem="RVS-fs-vNT" firstAttribute="leading" secondItem="a0w-4S-PvA" secondAttribute="leading" id="mC3-kU-09z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="a0w-4S-PvA"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="RVS-fs-vNT" id="Cfu-rP-YYx"/>
+                        <outlet property="versionLabel" destination="j5N-CS-5rP" id="56V-i2-Z6m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f9g-wT-9A4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="121.88905547226388"/>
         </scene>
     </scenes>
 </document>

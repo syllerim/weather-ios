@@ -15,11 +15,12 @@ import SwiftyStoryboard
 enum Route: Equatable {
     case dashboard
     case information
+    case settings
     
     static func == (lhs: Route, rhs: Route) -> Bool {
         var result: Bool
         switch (lhs, rhs) {
-        case (.dashboard, .dashboard), (.information, .information):
+        case (.dashboard, .dashboard), (.information, .information), (.settings, .settings):
             result = true
         default:
             result = false
@@ -49,6 +50,8 @@ final class AppRoute {
                     return .dashboard
                 case .information:
                     return .information
+                case .settings:
+                    return .settings
                 }
             }
             .unwrap()
@@ -61,8 +64,12 @@ final class AppRoute {
                     let informationVC = Main.instantiateViewController(with: .information)
                     navigationController?.pushViewController(informationVC, animated: false)
                     return navigationController
+                case .settings:
+                    let navigationController = self.window?.rootViewController as? UINavigationController
+                    let settingsVC = Main.instantiateViewController(with: .settings)
+                    navigationController?.pushViewController(settingsVC, animated: false)
+                    return navigationController
                 }
-                
             }
             .subscribe(onNext: { [unowned self] in
                 self.window?.rootViewController = $0

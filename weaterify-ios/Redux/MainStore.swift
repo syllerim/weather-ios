@@ -35,9 +35,14 @@ struct App {
         //Actions
         case changeRoute(Route)
         case updateForecast(Forecast)
-        case updateUnitTemperature(String)
         case changeLocation(CLLocationCoordinate2D)
         case reloadData
+        case insertCity(UIViewController)
+        case updateCity(String)
+        case insertNumberDays(UIViewController)
+        case updateNumberOfDaysForecast(Int)
+        case insertUnit(UIViewController)
+        case updateUnitTemperature(String)
     }
     
     static var appReducer: Reducer<State> {
@@ -50,8 +55,18 @@ struct App {
             case let .updateForecast(forecast)?:
                 state.forecast = forecast
                 state.location = forecast.city.name
-            case let .updateUnitTemperature(unitTemperature)?:
-                state.unitTemperature = unitTemperature
+            case let .updateCity(city)?:
+                state.location = city
+            case let .updateNumberOfDaysForecast(days)?:
+                if days < 6 {
+                    state.numberOfDaysForecast = days
+                }
+            case let .updateUnitTemperature(unit)?:
+                if unit == "Celcius" {
+                    state.unitTemperature = "Celcius"
+                } else {
+                    state.unitTemperature = "Farenheit"
+                }
             default:
                 break
             }
@@ -62,7 +77,7 @@ struct App {
 
 let mainStore = Store(
     reducer: App.appReducer,
-    observable: Variable(App.State(unitTemperature: "metric",  numberOfDaysForecast: 15)),
+    observable: Variable(App.State(unitTemperature: "Celcius",  numberOfDaysForecast: 5)),
     middleware: App.middleware
 )
 

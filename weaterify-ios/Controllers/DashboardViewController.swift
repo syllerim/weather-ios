@@ -34,6 +34,8 @@ final class DashboardViewController: UIViewController {
         navigationController?.navigationBar.layer.zPosition = -1;
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icn-info"), style: .plain, target: self, action: #selector(DashboardViewController.showInformationDetails))
         navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icn-settings"), style: .plain, target: self, action: #selector(DashboardViewController.showSettings))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
     }
     
     func setupTableView() {
@@ -46,6 +48,7 @@ final class DashboardViewController: UIViewController {
         tableView.register(TodayForecastTableViewCell.self, forCellReuseIdentifier: "TodayItemCell")
         tableView.register(DailyForecastTableViewCell.self, forCellReuseIdentifier: "ItemCell")
         tableView.allowsSelection = false
+        tableView.tableFooterView = UIView()
     }
     
     func setupRefreshControl() {
@@ -66,6 +69,10 @@ final class DashboardViewController: UIViewController {
     
     @objc func showInformationDetails() {
         mainStore.dispatch(App.Actions.changeRoute(.information))
+    }
+    
+    @objc func showSettings() {
+        mainStore.dispatch(App.Actions.changeRoute(.settings))
     }
     
     func observeData() {
@@ -110,7 +117,7 @@ extension DashboardViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let items = items else { return 0 }
-        return items.cnt
+        return items.cnt-1
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -120,7 +127,7 @@ extension DashboardViewController: UITableViewDelegate {
             (cell as? TodayForecastTableViewCell)?.configure(with: viewModel)
         }
         else {
-            let viewModel = DailyForecastViewModel(forecast: elements.list[indexPath.row])
+            let viewModel = DailyForecastViewModel(forecast: elements.list[indexPath.row+1])
             (cell as? DailyForecastTableViewCell)?.configure(with: viewModel)
         }
     }

@@ -28,7 +28,8 @@ final class ApiConnection<Provider: DataRequestType>: ApiConnectionType {
     }
     
     func getForecast(for city: String, cnt: String, units: String?) -> Observable<Forecast> {
-        return requestObservable(at: .forecast(for: city, cnt, units, token)).toModel()
+        let unit = units == "Farenheit" ? "imperial" : "metric"
+        return requestObservable(at: .forecast(for: city, cnt, unit, token)).toModel()
     }
     
     func getForecastBasedOnCoordinates(for lat: String, lon: String, cnt: String, units: String?) -> Observable<Forecast> {

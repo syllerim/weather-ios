@@ -46,9 +46,9 @@ extension TodayForecastViewModel {
         let temp = temperature.toString(with: 1)
         guard let unit = unit else { return temp + "ºK" }
         switch unit {
-        case "metric":
+        case "Celcius":
             return temp + "ºC"
-        case "imperial":
+        case "Farenheit":
             return temp + "ºF"
         default:
             return temp + "ºK"
