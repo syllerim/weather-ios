@@ -39,10 +39,10 @@ public class TodayForecastTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        containerView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        containerView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        containerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        containerView.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        containerView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         
         containerView.addSubview(cityLabel)
         
