@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class DashboardViewController: UIViewController {
+final class DashboardViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,14 +21,19 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavigation()
+        setupTableView()
+        setupRefreshControl()
+        observeData()
+    }
+    
+    func setupNavigation() {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1275623441, green: 0.5841561556, blue: 0.9495651126, alpha: 1)
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.layer.zPosition = -1;
-        
-        setupTableView()
-        setupRefreshControl()
-        observeData()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icn-info"), style: .plain, target: self, action: #selector(DashboardViewController.showInformationDetails))
+        navigationItem.leftBarButtonItem?.tintColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
     }
     
     func setupTableView() {
@@ -40,6 +45,7 @@ class DashboardViewController: UIViewController {
         tableView.separatorStyle = .singleLine
         tableView.register(TodayForecastTableViewCell.self, forCellReuseIdentifier: "TodayItemCell")
         tableView.register(DailyForecastTableViewCell.self, forCellReuseIdentifier: "ItemCell")
+        tableView.allowsSelection = false
     }
     
     func setupRefreshControl() {
@@ -56,6 +62,10 @@ class DashboardViewController: UIViewController {
         mainStore.dispatch(App.Actions.reloadData)
         tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    @objc func showInformationDetails() {
+        mainStore.dispatch(App.Actions.changeRoute(.information))
     }
     
     func observeData() {
