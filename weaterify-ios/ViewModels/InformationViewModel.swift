@@ -13,11 +13,7 @@ import BonMot
 struct InformationViewModel {
     let logo = #imageLiteral(resourceName: "icn-logo")
     
-    let description = """
-    This exercise was developed and designed by Mangrove from Rotterdam for the purpose of testing iOS development skills
-    This app cannot be published or released in any way without the knowledge and approval of Mangrove.
-    If you have any questions please contact us directly and during this exercise don’t forget to have fun while coding!
-    """
+    let description = "This is an example of iOS Weather App with Reactive/RxSwift and Redux development."
     
     var version: String {
         guard let ver = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return "v.1.0.0" }
