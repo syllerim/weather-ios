@@ -22,7 +22,7 @@ before_script:
   - set -o pipefail
 
 script:
-  - xcodebuild clean $ACTION -project "$PROJECT" -scheme "$SCHEME" -destination "$DESTINATION" | xcpretty -c;
+  - xcodebuild clean $ACTION -project "$PROJECT" -sdk iphonesimulator -destination "$DESTINATION" | xcpretty -c;
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) 
