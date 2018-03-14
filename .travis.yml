@@ -1,6 +1,12 @@
 language: objective-c
 osx_image: xcode9.2
 
+xcode_project: weaterify-ios.xcodeproj
+
+branches:
+only:
+- master
+
 cache:
   directories:
   - Carthage
