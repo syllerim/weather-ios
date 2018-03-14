@@ -9,20 +9,33 @@ before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
 
-env:
-  global:
-    - PROJECT="weaterify-ios.xcodeproj"
-  matrix:
-  - ACTION='build test'  PLATFORM=iOS     SCHEME='weaterify-ios'         CACHE_NAME=IOS      DESTINATION='platform=iOS Simulator,OS=11.0,name=iPhone 8 Plus'
-
 install:
   - carthage bootstrap --no-use-binaries --platform $PLATFORM --cache-builds
-
+  - gem install xcpretty
+	
 before_script:
   - set -o pipefail
 
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - LANG=en_US.UTF-8
+    - FRAMEWORK_NAME="weaterify-ios"
+		- SCHEME="iOS"
+		- SDK="iphonesimulator11.0"
+		- DESTINATION="OS=11.0,name=iPhone 7 Plus"
+		
 script:
-  - xcodebuild clean $ACTION -project "$PROJECT" -sdk iphonesimulator -destination "$DESTINATION" | xcpretty -c;
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild
+    -project "$FRAMEWORK_NAME.xcodeproj"
+    -scheme "$FRAMEWORK_NAME-$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
+    -configuration Debug
+    test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) 
