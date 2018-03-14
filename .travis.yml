@@ -12,7 +12,7 @@ before_install:
 install:
   - carthage bootstrap --no-use-binaries --platform $PLATFORM --cache-builds
   - gem install xcpretty
-	
+
 before_script:
   - set -o pipefail
 
@@ -24,7 +24,7 @@ env:
     - SCHEME="iOS"
     - SDK="iphonesimulator11.0"
     - DESTINATION="OS=11.0,name=iPhone 7 Plus"
-		
+	
 script:
   - xcodebuild -version
   - xcodebuild -showsdks
