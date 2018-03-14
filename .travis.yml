@@ -33,7 +33,7 @@ script:
   - xcodebuild
     -project weaterify-ios.xcodeproj
     -scheme weaterify-ios-iOS
-    -sdk iphonesimulator11.0
+    -sdk iphonesimulator11.2
     -destination 'OS=11.0,name=iPhone 7 Plus'
     test
 
