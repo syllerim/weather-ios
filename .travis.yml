@@ -34,7 +34,7 @@ script:
   - xcodebuild
     -project weaterify-ios.xcodeproj
     -scheme weaterify-ios
-    -sdk sdk iphonesimulator11.2
+    -sdk iphonesimulator11.2
     -destination "$DESTINATION"
     test
 
