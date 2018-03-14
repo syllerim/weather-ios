@@ -26,7 +26,6 @@ env:
 		- DESTINATION="OS=11.0,name=iPhone 7 Plus"
 		
 script:
-  - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
   - xcodebuild
